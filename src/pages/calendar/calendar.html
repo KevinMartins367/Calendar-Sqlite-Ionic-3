@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Calendar</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-navbar>
+        <ion-title>
+          {{ viewTitle }}
+        </ion-title>
+        <ion-buttons end>
+          <button ion-button icon-only (click)="addEvent()">
+            <ion-icon ios="ios-add" md="md-add"></ion-icon>
+          </button>
+        </ion-buttons>
+      </ion-navbar>
+  <calendar [eventSource]="eventSource"
+            [noEventsLabel]="noEventsLabel"
+            [calendarMode]="calendar.mode"
+            [currentDate]="calendar.currentDate"
+            [locale]="calendar.locale"
+            [monthviewEventDetailTemplate]="template"
+            (onEventSelected)="onEventSelected($event)"
+            (onTitleChanged)="onViewTitleChanged($event)"
+            (onTimeSelected)="onTimeSelected($event)"
+            step="30"
+            class="calendar">
+  </calendar>
+  <ng-template #template let-selectedDate="selectedDate.events" let-noEventsLabel="noEventsLabel">
+    <ion-list *ngIf="selectedDate.length > 0" no-lines class="event-list" padding>
+      <ion-list *ngFor="let event of selectedDate">
+        <ion-item-sliding>
+          <ion-item ion-item detail-push (click)="onEventSelected(event)" class="event-button">
+            <ion-icon name="calendar" item-start></ion-icon>
+            <h1>{{event.title}}</h1>
+            <p>{{event.subText}} </p>
+          </ion-item>
+          <ion-item-options side="right">
+            <button ion-button color="btnee" (click)="delete(event)">
+              delete
+            </button>
+          </ion-item-options>
+          <ion-item-options side="left">
+            <button ion-button color="btnee" (click)="Update(event)">
+              edit
+            </button>
+          </ion-item-options>
+        </ion-item-sliding>
+      </ion-list>
+    </ion-list>
+    <ion-title *ngIf="selectedDate.length == 0"><br>{{noEventsLabel}}</ion-title>
+  </ng-template>
+</ion-content>

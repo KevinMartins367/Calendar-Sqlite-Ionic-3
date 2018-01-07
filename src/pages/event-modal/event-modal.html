@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-navbar color="bordas">
+    <ion-buttons end>
+      <button ion-button icon-only (click)="cancel()">
+        <ion-icon name="close"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>Add Event</ion-title>
+  </ion-navbar>
+</ion-header>
+ 
+<ion-content>
+  <ion-list>
+    <ion-item>
+      <ion-input type="text" placeholder="Titulo" [(ngModel)]="event.title"></ion-input>
+    </ion-item>
+ 
+    <!--  in ion-datetime you can modify  displayFormat ( is the format that the date will be displayed on the label ),
+                                          pickerFormat ( is the date selection format ), 
+                                          [(ngModel)] ( linked variable ), 
+                                          [min] ( start date of the pickerFormat ), 
+                                          cancelText ( text displayed on the button, can be changed to any string ), 
+                                          doneText  ( text displayed on the button, can be changed to any string )
+          ( where you can place the date format of your choice following the documentation ---> https://ionicframework.com/docs/api/components/datetime/DateTime/  )
+    
+        -->
+
+    <ion-item>
+      <ion-label>Star</ion-label>
+      <ion-datetime displayFormat="DD/MM/YYYY HH:mm" pickerFormat="MMM D:HH:mm" [(ngModel)]="event.startTime" [min]="minDate"
+      cancelText="Cancel"
+      doneText="Done"></ion-datetime>
+    </ion-item>
+ 
+    <ion-item>
+      <ion-label>End</ion-label>
+      <ion-datetime displayFormat="DD/MM/YYYY HH:mm" pickerFormat="MMM D:HH:mm" [(ngModel)]="event.endTime" [min]="event.startTime"
+      cancelText="Cancel"
+      doneText="Done"></ion-datetime>
+    </ion-item>
+ 
+    <ion-item>
+      <ion-label>All day?</ion-label>
+      <ion-checkbox [(ngModel)]="event.allDay"></ion-checkbox>
+    </ion-item>
+  </ion-list>
+ 
+  <div>
+    <button ion-button block round (click)="save()">
+      Conclude
+    </button>
+  </div>
+  
+</ion-content>
