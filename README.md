@@ -1,3 +1,22 @@
+## Calendar Sqlite ionic 3
+
+npm install ionic2-calendar --save
+
+npm install moment --save
+
+npm install intl@1.2.5 --save
+
+
+
+
+
+
+
+
+
+
+
+
 This is a starter template for [Ionic](http://ionicframework.com/docs/) projects.
 
 ## How to use this template
